@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-	title: 'StrokeE - Paramedic App',
-	description: 'Emergency response system for paramedics',
+	title: 'StrokeE - Admin App',
+	description: 'Emergency response system for administrators',
 };
 
 export default function RootLayout({

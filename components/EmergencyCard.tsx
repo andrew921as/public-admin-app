@@ -18,7 +18,7 @@ export default function EmergencyCard({
     const [isModalOpen, setIsModalOpen] = useState(false);
   
   const handleClick = () => {
-    router.push(`/emergency/${emergencyId}`);
+    router.push(`dashboard/emergency/${emergencyId}`);
   };
   const handleConfirm = () => {
     console.log(`Emergency ${emergencyId} confirmed`);
