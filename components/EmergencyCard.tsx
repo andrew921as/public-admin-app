@@ -30,12 +30,12 @@ export default function EmergencyCard({
       <div
         className="border-b border-red-200 py-4 w-full cursor-pointer"
       >
-        <div className="flex">
+        <div className="flex flex-col md:flex-row">
           <div>
             <p className="text-customRed font-medium">{userName}</p>
             <p className="text-customRed">+57 {userPhone}</p>
           </div>
-          <div className="ml-10 flex gap-10 h-2/6 w-2/6">
+          <div className=" flex flex-col gap-10 md:ml-10 md:flex-row md:h-2/6 md:w-2/6">
             <Button onClick={handleClick} title="Mas informacion" color="green" />
             <Button onClick={()=>setIsModalOpen(true)} title="Cancelar proceso" color="red" />
           </div>

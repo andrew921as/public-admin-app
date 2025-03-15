@@ -37,10 +37,10 @@ export default function EmergencyClientPage({
   }, [emergencyId]);
 
   return (
-    <div className="flex">
+    <div className="flex bg-white">
     {/* <SettingsMenu /> */}
-    <div className='w-1/6 container'></div>
-    <div className="mt-20 px-4 flex flex-col items-start ml-10 grow">
+    <div className='hidden w-1/6 container md:block'></div>
+    <div className="mt-20 px-4 flex flex-col items-start ml-10 grow md:ml-0">
       <div className="text-customRed mt-4 ml-4">
         <Link href="/dashboard">
           <ArrowBigLeft size={48} />
