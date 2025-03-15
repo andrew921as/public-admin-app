@@ -2,6 +2,7 @@
 
 import Button from "@/components/Button";
 import { X } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 // Mock data
@@ -30,6 +31,7 @@ interface User {
 }
 
 export default function UsersPage() {
+  const router = useRouter();
   const [users, setUsers] = useState<User[]>(initialUsers);
 
   const handleDelete = (userId: string) => {
@@ -47,9 +49,7 @@ export default function UsersPage() {
               <Button
                 title="Agregar"
                 color="green"
-                onClick={() => {
-                  console.log("Add user");
-                }}
+                onClick={() =>router.push("users/createUser")}
               />
             </div>
           </div>
