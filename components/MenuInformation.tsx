@@ -8,10 +8,18 @@ export default function MenuInformation() {
 
   const handleOnClick = (index: number) => {
     setTap(index);
-    if (index) {
-      router.push("/dashboard/users");
-    } else {
-      router.push("/dashboard");
+    switch (index) {
+      case 0:
+        router.push("/dashboard");
+        break;
+      case 1:
+        router.push("/dashboard/users");
+        break;
+      case 2:
+        router.push("/dashboard/ambulance");
+        break;
+      default:
+        router.push("/dashboard");
     }
   };
 
@@ -42,6 +50,14 @@ export default function MenuInformation() {
           onClick={() => handleOnClick(1)}
         >
           <h2 className="text-lg font-medium">Usuarios</h2>
+        </div>
+        <div
+          className={`flex items-center justify-between ${
+            tap === 2 ? "bg-customRed text-white" : "text-customRed"
+          } p-4 cursor-pointer`}
+          onClick={() => handleOnClick(2)}
+        >
+          <h2 className="text-lg font-medium">Ambulancias</h2>
         </div>
       </div>
 

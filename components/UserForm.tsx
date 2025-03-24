@@ -165,7 +165,7 @@ export function UserForm() {
             required
           >
             <option value="operator">Operador</option>
-            <option value="paramedic">Ambulancia</option>
+            <option value="paramedic">Paramedico</option>
             <option value="healthCenter">Clinica</option>
             <option value="admin">Administrador</option>
           </select>

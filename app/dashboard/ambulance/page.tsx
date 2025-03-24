@@ -1,58 +1,68 @@
 "use client";
 
-import apiClient from "@/api/api";
 import Button from "@/components/Button";
-import { useAuth } from "@/context/AuthContext";
 import { X } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useAuth } from "@/context/AuthContext";
+import apiClient from "@/api/api";
 import toast from "react-hot-toast";
 
-interface User {
-  userId: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  role: string;
-  isActive: boolean;
+// Mock data
+const initialambulances = [
+{
+  ambulanceId: "1",
+  status: "available",
+},
+{ ambulanceId: "2", status: "unavailable" },
+{ ambulanceId: "3", status: "available" },
+{
+  ambulanceId: "4",
+  status: "available",
+},
+];
+
+interface Ambulance {
+  ambulanceId: string;
+  status: string;
 }
 
-export default function UsersPage() {
+export default function AmbulancePage() {
   const router = useRouter();
-  const [users, setUsers] = useState<User[]>([]);
+  const [ambulances, setambulances] = useState<Ambulance[]>([]);
   const [loading, setLoading] = useState(false);
   const { user } = useAuth();
 
-  useEffect(() => {
-    if (!user) return;
-    const loadingToast = toast.loading("Cargando Ambulancias...");
+  useEffect(()=>{
+    if(!user)return;
+    const loadingToast = toast.loading('Cargando Ambulancias...');
     const fetchAmbulances = async () => {
       try {
         setLoading(true);
-        const response = await apiClient.get("/admin/all");
-        setUsers(response.data.users);
-        console.log(response.data.users);
-        toast.success("Usuarios cargados correctamente.", { id: loadingToast });
+        const response = await apiClient.get("/ambulance/all");
+        setambulances(response.data.ambulances);
+        console.log(response.data.ambulances);
+        toast.success('Ambulancias cargadas.', {id: loadingToast});
       } catch (error) {
         console.error("Error fetching ambulances:", error);
-        toast.error("Error al cargar los usuarios.", { id: loadingToast });
+        toast.error('Error al cargar las Ambulancias.', {id: loadingToast});
       } finally {
         setLoading(false);
       }
-    };
-
+    }
+    
     fetchAmbulances();
-  }, [user]);
+  },[user]);
 
-  const handleDelete = async(userId: string, userRol:string) => {
+  const handleDelete = async (ambulanceId: string) => {
     const loadingToast = toast.loading('Eliminando Ambulancia...');
     try {
-      await apiClient.delete(`/${userRol}/delete/${userId}`);
-      toast.success('Usuario eliminado exitosamente.', {id: loadingToast});
-      setUsers(users.filter((user) => user.userId !== userId));
+      await apiClient.delete(`/ambulance/delete/${ambulanceId}`);
+      toast.success('Ambulancia Eliminada exitosamente.', {id: loadingToast});
+      setambulances(ambulances.filter((ambulance) => ambulance.ambulanceId !== ambulanceId));
     } catch (error) {
       console.error("Error fetching ambulances:", error);
-      toast.error('Error al eliminar el usuario.', {id: loadingToast});
+      toast.error('Error al eliminar la ambulancia.', {id: loadingToast});
     }
   };
 
@@ -70,12 +80,12 @@ export default function UsersPage() {
       <div className="mt-20 px-4 flex flex-col items-start ml-10 grow">
         <div className="w-10/12">
           <div className="flex justify-between items-start mb-6 w-full">
-            <h1 className="text-3xl font-bold text-gray-900 mb-8">Usuarios</h1>
+            <h1 className="text-3xl font-bold text-gray-900 mb-8">Ambulancias</h1>
             <div className="w-1/5">
               <Button
                 title="Agregar"
                 color="green"
-                onClick={() => router.push("users/createUser")}
+                onClick={() =>router.push("ambulance/createAmbulance")}
               />
             </div>
           </div>
@@ -85,31 +95,27 @@ export default function UsersPage() {
               <thead>
                 <tr className="border-b">
                   <th className="text-left py-3 px-4 font-medium">
-                    Nombre completo
+                    Id
                   </th>
-                  <th className="text-left py-3 px-4 font-medium">email</th>
-                  <th className="text-left py-3 px-4 font-medium">rol</th>
                   <th className="text-left py-3 px-4 font-medium">eliminar</th>
                 </tr>
               </thead>
 
               {/* Table Body */}
               <tbody>
-                {users.map((user) => (
+                {ambulances.map((ambulance) => (
                   <tr
-                    key={user.userId}
+                    key={ambulance.ambulanceId}
                     className="border-b hover:bg-gray-50 transition-colors"
                   >
-                    <td className="py-3 px-4">{user.firstName} {user.lastName}</td>
-                    <td className="py-3 px-4">{user.email}</td>
-                    <td className="py-3 px-4">{user.role}</td>
+                    <td className="py-3 px-4">{ambulance.ambulanceId}</td>
                     <td className="py-3 px-4">
                       <button
-                        onClick={() => handleDelete(user.userId)}
+                        onClick={() => handleDelete(ambulance.ambulanceId)}
                         className="p-1 hover:bg-red-50 rounded-full text-red-500 transition-colors"
                       >
                         <X className="h-4 w-4" />
-                        <span className="sr-only">Delete user</span>
+                        <span className="sr-only">Delete ambulance</span>
                       </button>
                     </td>
                   </tr>
@@ -118,9 +124,9 @@ export default function UsersPage() {
             </table>
 
             {/* Empty State */}
-            {users.length === 0 && (
+            {ambulances.length === 0 && (
               <div className="text-center py-8 text-gray-500">
-                No hay usuarios para mostrar
+                No hay ambulancias para mostrar
               </div>
             )}
           </div>
