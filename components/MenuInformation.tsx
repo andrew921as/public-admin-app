@@ -18,6 +18,9 @@ export default function MenuInformation() {
       case 2:
         router.push("/dashboard/ambulance");
         break;
+      case 3:
+        router.push("/dashboard/healthCenter");
+        break;
       default:
         router.push("/dashboard");
     }
@@ -36,28 +39,32 @@ export default function MenuInformation() {
       {/* Panel Body */}
       <div className="py-6">
         <div
-          className={`flex items-center justify-between ${
-            tap === 0 ? "bg-customRed text-white" : "text-customRed"
-          } p-4 cursor-pointer `}
+          className={`flex items-center justify-between ${tap === 0 ? "bg-customRed text-white" : "text-customRed"
+            } p-4 cursor-pointer `}
           onClick={() => handleOnClick(0)}
         >
           <h2 className="text-lg font-medium">En proceso</h2>
         </div>
         <div
-          className={`flex items-center justify-between ${
-            tap === 1 ? "bg-customRed text-white" : "text-customRed"
-          } p-4 cursor-pointer`}
+          className={`flex items-center justify-between ${tap === 1 ? "bg-customRed text-white" : "text-customRed"
+            } p-4 cursor-pointer`}
           onClick={() => handleOnClick(1)}
         >
           <h2 className="text-lg font-medium">Usuarios</h2>
         </div>
         <div
-          className={`flex items-center justify-between ${
-            tap === 2 ? "bg-customRed text-white" : "text-customRed"
-          } p-4 cursor-pointer`}
+          className={`flex items-center justify-between ${tap === 2 ? "bg-customRed text-white" : "text-customRed"
+            } p-4 cursor-pointer`}
           onClick={() => handleOnClick(2)}
         >
           <h2 className="text-lg font-medium">Ambulancias</h2>
+        </div>
+        <div
+          className={`flex items-center justify-between ${tap === 3 ? "bg-customRed text-white" : "text-customRed"
+            } p-4 cursor-pointer`}
+          onClick={() => handleOnClick(3)}
+        >
+          <h2 className="text-lg font-medium">Hospitales</h2>
         </div>
       </div>
 
