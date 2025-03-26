@@ -10,3 +10,11 @@ export type EmergencyInfo = {
   strokeLevel?: string;
   emergencyLocation: {latitude: double; longitude: double};
 };
+
+export type UserUpdateData = {
+  userId: string;
+  firstName: string;
+  lastName: string;
+  isActive: boolean;
+  role: string;
+};
