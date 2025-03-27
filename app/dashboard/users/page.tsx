@@ -23,7 +23,7 @@ export default function UsersPage() {
   const router = useRouter();
   const [users, setUsers] = useState<User[]>([]);
   const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalTitle, setModalTitle] = useState(""); // Estado para el título dinámico
   const [userToDelete, setUserToDelete] = useState<User | null>(null);
@@ -39,6 +39,7 @@ export default function UsersPage() {
         const response = await apiClient.get("/admin/all");
         setUsers(response.data.users);
         console.log(response.data.users);
+			  setFilteredUsers(response.data.users);
         toast.success("Usuarios cargados correctamente.", { id: loadingToast });
       } catch (error) {
         console.error("Error fetching users:", error);
