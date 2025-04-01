@@ -1,7 +1,7 @@
 {
-	"name": "StrokeE - Paramedic App",
-	"short_name": "StrokeE-paramedic",
-	"description": "Emergency response system for paramedics",
+	"name": "StrokeE - Admin App",
+	"short_name": "StrokeE-Admin",
+	"description": "Emergency response system for administrators",
 	"start_url": "/",
 	"display": "standalone",
 	"background_color": "#ffffff",
