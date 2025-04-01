@@ -84,7 +84,7 @@ export default function UpdateUser() {
         {loading ? (
           <div className="w-6 h-6 border-2 border-customRed border-t-transparent rounded-full animate-spin" />
         ) : (
-          <EditProfileForm firstName={userData?.firstName} lastName={userData?.lastName} role={userData?.role} isActive={userData?.isActive} userId={userData?.userId} />
+          <EditProfileForm firstName={userData ? userData.firstName : ""} lastName={userData? userData.lastName:""} role={userData?userData.role:""} isActive={userData?userData.isActive:false} userId={userData?userData.userId:""} />
         )}
       </div>
     </main>
