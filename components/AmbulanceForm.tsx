@@ -3,6 +3,7 @@
 import apiClient from "@/api/api";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { AxiosError } from "axios";
 import toast from "react-hot-toast";
 
 export function AmbulanceForm() {
@@ -32,13 +33,13 @@ export function AmbulanceForm() {
 
       // Redirect to login page
       router.push("/dashboard/ambulance");
-    } catch (error: any) {
+    } catch (error) {
       // Handle error responses from the backend
       let errorMessage = "Error al crear la ambulancia.";
 
-      if (error.response) {
+      if (error instanceof AxiosError) {
         // Backend returned an error response
-        if (error.response.data && error.response.data.message) {
+        if (error.response?.data && error.response.data.message) {
           errorMessage = error.response.data.message;
         }
       } else if (error instanceof Error) {

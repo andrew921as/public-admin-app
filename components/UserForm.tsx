@@ -5,6 +5,7 @@ import { isValidEmail } from "@/utils/validations";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { AxiosError } from "axios";
 
 export function UserForm() {
   const [userName, setUserName] = useState("");
@@ -82,13 +83,13 @@ export function UserForm() {
 
       // Redirect to login page
       router.push("/dashboard/users");
-    } catch (error: any) {
+    } catch (error) {
       // Handle error responses from the backend
       let errorMessage = "Error al crear la cuenta.";
 
-      if (error.response) {
+      if (error instanceof AxiosError) {
         // Backend returned an error response
-        if (error.response.data && error.response.data.message) {
+        if (error.response?.data && error.response.data.message) {
           errorMessage = error.response.data.message;
         }
       } else if (error instanceof Error) {
