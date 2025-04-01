@@ -1,8 +1,6 @@
 'use client';
 
 import {useEffect, useState} from 'react';
-import {useRouter} from 'next/navigation';
-import {SignOut} from '@/firebase/config';
 import { Menu, X } from 'lucide-react';
 import MenuInformation from './MenuInformation';
 

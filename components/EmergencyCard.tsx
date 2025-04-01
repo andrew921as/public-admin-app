@@ -2,20 +2,17 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Button from "./Button";
 import ConfirmModal from "./ConfirmModal";
-import { Emergency, EmergencyInfo } from "@/types";
 
 interface EmergencyCardProps {
   userName: string;
   emergencyId: string;
   emergencyTime: string;
-  emergency: Emergency;
 }
 
 export default function EmergencyCard({
   userName,
   emergencyId,
   emergencyTime,
-  emergency,
 }: EmergencyCardProps) {
   const router = useRouter();
     const [isModalOpen, setIsModalOpen] = useState(false);

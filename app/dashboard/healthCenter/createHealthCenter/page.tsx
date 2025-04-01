@@ -1,6 +1,5 @@
 "use client";
 
-import { AmbulanceForm } from "@/components/AmbulanceForm";
 import { HealthCenterForm } from "@/components/HealthCenterForm";
 import { ArrowBigLeft } from "lucide-react";
 import Link from "next/link";

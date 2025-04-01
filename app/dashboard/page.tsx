@@ -1,10 +1,8 @@
 'use client';
 
 // Mocks
-import { emergenciesList } from '@/mocks/emergency';
 
 // Components
-import EmergencyCard from '@/components/EmergencyCard';
 import { formatDate } from '@/utils/functions';
 import { useEffect, useState } from 'react';
 import { useAuth } from '@/context/AuthContext';
@@ -63,7 +61,7 @@ export default function Dashboard() {
     }
   }, [searchTerm, user]);
 
-  if (data === null) {
+  if (data === null && loading) {
     return (
       <main className="min-h-screen bg-white p-4">
         {/* Main Content */}
@@ -126,7 +124,6 @@ export default function Dashboard() {
             <tbody>
               {filteredEmergencies.map((emergency) => {
                 const formattedDate = formatDate(emergency.startDate);
-                const formattedPickupDate = formatDate(emergency.pickupDate);
                 const formattedDeliveredDate = formatDate(emergency.deliveredDate);
                 return (
                   <tr

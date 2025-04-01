@@ -1,8 +1,6 @@
 "use client";
 
 import apiClient from "@/api/api";
-import { formatDate } from "@/utils/functions";
-import { isValidEmail } from "@/utils/validations";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
@@ -27,7 +25,7 @@ export function HealthCenterForm() {
 
     try {
       // Register patient through backend endpoint
-      const response = await apiClient.post(`/clinic/register`, {healthCenterName: healthCenterName});
+      await apiClient.post(`/clinic/register`, {healthCenterName: healthCenterName});
 
       // Successful registration
       toast.success("Centro medico creado con éxito!", { id: loadingToast });

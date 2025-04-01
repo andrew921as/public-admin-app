@@ -71,7 +71,7 @@ export default function UsersPage() {
   };
 
   const handleDelete = async (userId: string, userRol: string) => {
-    let formatedRol = userRol === 'clinic' ? 'healthCenter' : userRol;
+    const formatedRol = userRol === 'clinic' ? 'healthCenter' : userRol;
     const loadingToast = toast.loading('Eliminando Usuario...');
     try {
       await apiClient.delete(`/${formatedRol}/delete/${userId}`);

@@ -1,14 +1,9 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { EmergencyInfo, SingleEmergency } from "@/types";
+import { SingleEmergency } from "@/types";
 import { ArrowBigLeft } from "lucide-react";
 import Link from "next/link";
-import dynamic from "next/dynamic";
-
-const DynamicMap = dynamic(() => import("@/components/Map"), {
-  ssr: false,
-});
 
 // Components
 import EmergencyInfoComponent from "@/components/EmergencyInfoComponent";
@@ -17,11 +12,7 @@ import toast from "react-hot-toast";
 import apiClient from "@/api/api";
 import { useAuth } from "@/context/AuthContext";
 
-export default function EmergencyClientPage({
-  params,
-}: {
-  params: Promise<{ emergencyId: string }>;
-}) {
+export default function EmergencyClientPage() {
   const { emergencyId } = useParams() // Get emergencyId from URL
   const [emergency, setEmergency] = useState<SingleEmergency | null>(null); // State for emergency data
   const [error, setError] = useState<Error | null>(null); // State for error handling
@@ -74,7 +65,7 @@ export default function EmergencyClientPage({
           </>
         )}
 
-        {!emergency && !error && (
+        {!emergency && !error && loading &&(
           <>
             <div className="w-11/12 mx-auto p-6 ">
               <div className="text-center space-y-6">

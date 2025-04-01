@@ -10,7 +10,7 @@ import { useParams, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
-export default function updateUser() {
+export default function UpdateUser() {
   const { role, userId } = useParams(); // Get emergencyId from URL
   const searchParams = useSearchParams(); // Get URL search params
   const [loading, setLoading] = useState(true);
@@ -36,7 +36,7 @@ export default function updateUser() {
       setLoading(false);
     };
     const fetchUser = async () => {
-      let formatedRol = role === 'clinic' ? 'healthCenter' : role;
+      const formatedRol = role === 'clinic' ? 'healthCenter' : role;
     const loadingToast = toast.loading('Cargando Usuario...');
       try {
         const response = await apiClient.get(`/${formatedRol}/${userId}`);

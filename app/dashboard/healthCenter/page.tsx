@@ -9,18 +9,6 @@ import apiClient from "@/api/api";
 import toast from "react-hot-toast";
 
 // Mock data
-const initialambulances = [
-{
-  ambulanceId: "1",
-  status: "available",
-},
-{ ambulanceId: "2", status: "unavailable" },
-{ ambulanceId: "3", status: "available" },
-{
-  ambulanceId: "4",
-  status: "available",
-},
-];
 
 interface HealthCenter {
   healthcenterId: string;

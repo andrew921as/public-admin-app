@@ -1,7 +1,6 @@
 'use client';
 
 import apiClient from '@/api/api';
-import { useAuth } from '@/context/AuthContext';
 import { UserUpdateData } from '@/types';
 import React, {useState} from 'react';
 import toast from 'react-hot-toast';
@@ -13,7 +12,7 @@ const Switch = React.forwardRef<
     checked?: boolean
     onCheckedChange?: (checked: boolean) => void
   }
->(({ className, checked = false, onCheckedChange, ...props }, ref) => {
+>(({ checked = false, onCheckedChange, ...props }, ref) => {
   const handleClick = (e: React.FormEvent) => {
     e.preventDefault()
     onCheckedChange?.(!checked)
