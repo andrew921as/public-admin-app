@@ -103,7 +103,7 @@ export default function UsersPage() {
 
   return (
     <div className="min-h-screen bg-white p-4 flex">
-      <div className="w-1/6 container"></div>
+      <div className="hidden w-1/6 container md:block"></div>
       <div className="mt-20 px-4 flex flex-col items-start ml-10 grow">
         <div className="w-10/12">
           <div className="flex justify-between items-start mb-6 w-full">

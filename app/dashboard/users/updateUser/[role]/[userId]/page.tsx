@@ -70,13 +70,15 @@ export default function updateUser() {
   }
 
   return (
-    <main>
+    <main className="min-h-screen bg-white p-4 flex">
+      <div className="hidden w-1/6 container md:inline"></div>
+      
       <div className="text-customRed mt-4 ml-4">
         <Link href="/dashboard/users">
           <ArrowBigLeft size={48} />
         </Link>
       </div>
-      <div className="flex min-h-screen flex-col items-center justify-center p-8 gap-8">
+      <div className="flex w-10/12 min-h-screen flex-col items-center justify-center p-8 gap-8">
         <StrokeeLogo />
 
         {loading ? (
