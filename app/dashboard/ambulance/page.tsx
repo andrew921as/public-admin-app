@@ -7,11 +7,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "@/context/AuthContext";
 import apiClient from "@/api/api";
 import toast from "react-hot-toast";
-
-interface Ambulance {
-  ambulanceId: string;
-  status: string;
-}
+import { Ambulance } from "@/types";
 
 export default function AmbulancePage() {
   const router = useRouter();

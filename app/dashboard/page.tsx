@@ -30,7 +30,7 @@ export default function Dashboard() {
       try {
         setLoading(true);
         const response = await apiClient.get("/emergency/all");
-        setData(response.data.data);
+        setData(response.data.data.reverse());
         console.log(response.data.data);
         setFilteredEmergencies(response.data.data);
         toast.success("Emergencias cargadas correctamente.", { id: loadingToast });
@@ -152,7 +152,7 @@ export default function Dashboard() {
           {/* Empty State */}
           {data.length === 0 && (
             <div className="text-center py-8 text-gray-500">
-              No hay usuarios para mostrar
+              No hay emergencias para mostrar
             </div>
           )}
         </div>
