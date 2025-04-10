@@ -80,7 +80,16 @@ export function UserForm() {
         password: password,
         ambulanceId: plate,
       };
-    } else {
+
+    } else if (rol === "healthCenter") {
+      user = {
+        firstName: userName,
+        lastName: userLastName,
+        email: userEmail,
+        password: password,
+        healthcenterId:'b63c9c47-40d9-48ac-ba98-2e9508281608',
+      };
+    }else {
       user = {
         firstName: userName,
         lastName: userLastName,
@@ -183,8 +192,8 @@ export function UserForm() {
             required
           >
             <option value="operator">Operador</option>
-            <option value="paramedic">Paramedico</option>
-            <option value="healthCenter">Clinica</option>
+            <option value="paramedic">Paramédico</option>
+            <option value="healthCenter">Clínica</option>
             <option value="admin">Administrador</option>
           </select>
         </div>

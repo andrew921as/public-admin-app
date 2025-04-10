@@ -56,7 +56,7 @@ export default function EmergencyInfoComponent({emergency}: EmergencyInfoProps) 
 						<p className="text-custom-black font-medium">{readableStartDate}</p>
 					</div>
           <div>
-						<h2 className="text-custom-black text-sm font-bold whitespace-wrap">Fecha de recepcion de paciente</h2>
+						<h2 className="text-custom-black text-sm font-bold whitespace-wrap">Fecha de recepción de paciente</h2>
 						<p className="text-custom-black font-medium">{readablePickUpDate}</p>
 					</div>
           <div>
