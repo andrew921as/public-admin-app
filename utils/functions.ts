@@ -1,5 +1,5 @@
 export const formatDate = (date: Date | string | null | undefined) => {
-	if (!date) return '---';
+	if (!date) return 'Ahorita';
 
 	try {
 		// Convert string to Date if it's a string

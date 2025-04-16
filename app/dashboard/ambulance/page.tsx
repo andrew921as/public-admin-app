@@ -79,7 +79,7 @@ export default function AmbulancePage() {
                   <th className="text-left py-3 px-4 font-medium">
                     Id
                   </th>
-                  <th className="text-left py-3 px-4 font-medium">Eliminar</th>
+                  <th className="text-left py-3 px-4 font-medium">eliminar</th>
                 </tr>
               </thead>
 

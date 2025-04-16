@@ -127,10 +127,10 @@ export default function UsersPage() {
                   <th className="text-left py-3 px-4 font-medium">
                     Nombre completo
                   </th>
-                  <th className="text-left py-3 px-4 font-medium">Email</th>
-                  <th className="text-left py-3 px-4 font-medium">Rol</th>
-                  <th className="text-left py-3 px-4 font-medium">Eliminar</th>
-                  <th className="text-left py-3 px-4 font-medium">Editar</th>
+                  <th className="text-left py-3 px-4 font-medium">email</th>
+                  <th className="text-left py-3 px-4 font-medium">rol</th>
+                  <th className="text-left py-3 px-4 font-medium">eliminar</th>
+                  <th className="text-left py-3 px-4 font-medium">editar</th>
                 </tr>
               </thead>
 

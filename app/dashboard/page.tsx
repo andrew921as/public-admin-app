@@ -116,7 +116,7 @@ export default function Dashboard() {
                 <th className="text-left py-3 px-4 font-medium">Llegada al Hospital</th>
                 <th className="text-left py-3 px-4 font-medium">Estado</th>
                 <th className="text-left py-3 px-4 font-medium">Ambulancia</th>
-                <th className="text-left py-3 px-4 font-medium">Ver más</th>
+                <th className="text-left py-3 px-4 font-medium">Ver mas</th>
               </tr>
             </thead>
 
@@ -125,11 +125,6 @@ export default function Dashboard() {
               {filteredEmergencies.map((emergency) => {
                 const formattedDate = formatDate(emergency.startDate);
                 const formattedDeliveredDate = formatDate(emergency.deliveredDate);
-                const formattedStatus = (emergency.status == 'CONFIRMED') ?
-                "Confirmada" : (emergency.status == 'TO_AMBULANCE') ?
-                "En camino" : (emergency.status == 'ATTENDED') ?
-                "Finalizada" : (emergency.status == 'DELIVERED') ?
-                "Entregada" : "Cancelada"; 
                 return (
                   <tr
                     key={emergency.emergencyId}
@@ -137,7 +132,7 @@ export default function Dashboard() {
                   >
                     <td className="py-3 px-4">{formattedDate}</td>
                     <td className="py-3 px-4">{formattedDeliveredDate}</td>
-                    <td className="py-3 px-4">{formattedStatus}</td>
+                    <td className="py-3 px-4">{emergency.status}</td>
                     <td className="py-3 px-4">{emergency.ambulanceId}</td>
                     <td className="py-3 px-4">
                       <button
