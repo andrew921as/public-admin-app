@@ -16,7 +16,7 @@ export function AmbulanceForm() {
     e.preventDefault();
 
     // Form validations
-    if (!ambulanceId) {
+    if (ambulanceId=="") {
       toast.error("Por favor ingrese el Id de la Ambulancia.");
       return;
     }

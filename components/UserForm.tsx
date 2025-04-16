@@ -184,6 +184,7 @@ export function UserForm() {
         </div>
         <div>
           <select
+            aria-label="Rol"
             id="role"
             name="roles"
             value={rol}
@@ -200,6 +201,7 @@ export function UserForm() {
         <div>
           {rol === "paramedic" && (
             <select
+              aria-label="Ambulancia"
               id="ambulances"
               name="ambulances"
               value={plate}
