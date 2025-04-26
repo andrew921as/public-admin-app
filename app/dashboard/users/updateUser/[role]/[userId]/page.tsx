@@ -27,7 +27,7 @@ export default function UpdateUser() {
           const parsed = JSON.parse(decodeURIComponent(userDataString));
           setUserData(parsed);
         } catch (error) {
-          console.error('Failed to parse emergency data:', error);
+          console.error('Failed to parse user data:', error);
           fetchUser();
         }
       } else {

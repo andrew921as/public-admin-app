@@ -14,7 +14,7 @@ export default function createHealthCenter() {
       <div className="w-1/6 container"></div>
       <div className="mt-20 px-4 flex flex-col items-start ml-10 grow">
         <div className="text-customRed mt-4 ml-4">
-          <Link href="/dashboard/healtCenter">
+          <Link href="/dashboard/healthCenter">
             <ArrowBigLeft size={48} />
           </Link>
         </div>
