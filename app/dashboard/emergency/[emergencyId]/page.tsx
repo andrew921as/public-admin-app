@@ -83,13 +83,7 @@ export default function EmergencyClientPage() {
           <>
             {" "}
             <EmergencyInfoComponent emergency={emergency} />
-            {/* <DynamicMap
-        latitude={emergency ? emergency.emergencyLocation.latitude : 3.382325}
-        longitude={
-          emergency ? emergency.emergencyLocation.longitude : -76.528043
-        }
-      /> */}
-            {/* <ConfirmStrokeComponent emergencyId={emergencyId} /> */}
+           
           </>
         )}
       </div>

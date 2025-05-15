@@ -27,7 +27,7 @@ export default function SettingsDropdownMenu() {
 			</div>
 
 			{/* Overlay */}
-			{isOpen && <div className="fixed inset-0 bg-black bg-opacity-50 transition-opacity z-30" onClick={() => setIsOpen(false)} />}
+			{isOpen && <div data-testid="overlay" className="fixed inset-0 bg-black bg-opacity-50 transition-opacity z-30" onClick={() => setIsOpen(false)} />}
 
 			{/* Side Panel */}
 			<div

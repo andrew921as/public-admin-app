@@ -77,8 +77,8 @@ describe("UserForm", () => {
     fireEvent.change(screen.getByPlaceholderText("Nombre"), { target: { value: "Ana" } });
     fireEvent.change(screen.getByPlaceholderText("Apellido"), { target: { value: "Perez" } });
     fireEvent.change(screen.getByPlaceholderText("Email"), { target: { value: "ana@test.com" } });
-    fireEvent.change(screen.getByPlaceholderText("Contraseña"), { target: { value: "123456" } });
-    fireEvent.change(screen.getByPlaceholderText("Confirmar Contraseña"), { target: { value: "123456" } });
+    fireEvent.change(screen.getByPlaceholderText("Contraseña"), { target: { value: "12345678" } });
+    fireEvent.change(screen.getByPlaceholderText("Confirmar Contraseña"), { target: { value: "12345678" } });
 
     fireEvent.click(screen.getByRole("button", { name: /crear usuario/i }));
 
@@ -87,7 +87,7 @@ describe("UserForm", () => {
         firstName: "Ana",
         lastName: "Perez",
         email: "ana@test.com",
-        password: "123456",
+        password: "12345678",
       });
       expect(toast.success).toHaveBeenCalledWith("¡Cuenta creada con éxito!", { id: "toast-id" });
       expect(pushMock).toHaveBeenCalledWith("/dashboard/users");
@@ -96,30 +96,31 @@ describe("UserForm", () => {
 
   test("shows ambulance select when role is paramedic and submits", async () => {
     render(<UserForm />);
+  
     fireEvent.change(screen.getByPlaceholderText("Nombre"), { target: { value: "Leo" } });
     fireEvent.change(screen.getByPlaceholderText("Apellido"), { target: { value: "Ramirez" } });
     fireEvent.change(screen.getByPlaceholderText("Email"), { target: { value: "leo@test.com" } });
-    fireEvent.change(screen.getByPlaceholderText("Contraseña"), { target: { value: "654321" } });
-    fireEvent.change(screen.getByPlaceholderText("Confirmar Contraseña"), { target: { value: "654321" } });
-
+    fireEvent.change(screen.getByPlaceholderText("Contraseña"), { target: { value: "87654321" } });
+    fireEvent.change(screen.getByPlaceholderText("Confirmar Contraseña"), { target: { value: "87654321" } });
+  
     fireEvent.change(screen.getByRole("combobox", { name: "Rol" }), { target: { value: "paramedic" } });
-
+  
     await waitFor(() => {
-      expect(screen.getByText("Seleccione una ambulancia")).toBeInTheDocument();
+      expect(screen.getByRole("combobox", { name: "Ambulancia" })).toBeInTheDocument();
     });
-
+  
     fireEvent.change(screen.getByRole("combobox", { name: "Ambulancia" }), {
       target: { value: "AMB-123" },
     });
-
+  
     fireEvent.click(screen.getByRole("button", { name: /crear usuario/i }));
-
+  
     await waitFor(() => {
       expect(apiClient.post).toHaveBeenCalledWith("/paramedic/register", {
         firstName: "Leo",
         lastName: "Ramirez",
         email: "leo@test.com",
-        password: "654321",
+        password: "87654321",
         ambulanceId: "AMB-123",
       });
     });
@@ -130,8 +131,8 @@ describe("UserForm", () => {
     fireEvent.change(screen.getByPlaceholderText("Nombre"), { target: { value: "Lucas" } });
     fireEvent.change(screen.getByPlaceholderText("Apellido"), { target: { value: "Rios" } });
     fireEvent.change(screen.getByPlaceholderText("Email"), { target: { value: "lucas@test.com" } });
-    fireEvent.change(screen.getByPlaceholderText("Contraseña"), { target: { value: "123456" } });
-    fireEvent.change(screen.getByPlaceholderText("Confirmar Contraseña"), { target: { value: "654321" } });
+    fireEvent.change(screen.getByPlaceholderText("Contraseña"), { target: { value: "12345678" } });
+    fireEvent.change(screen.getByPlaceholderText("Confirmar Contraseña"), { target: { value: "87654321" } });
 
     fireEvent.click(screen.getByRole("button", { name: /crear usuario/i }));
 
