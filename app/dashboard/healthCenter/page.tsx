@@ -85,7 +85,7 @@ export default function AmbulancePage() {
                   <th className="text-left py-3 px-4 font-medium">
                     Nombre
                   </th>
-                  <th className="text-left py-3 px-4 font-medium">eliminar</th>
+                  <th className="text-left py-3 px-4 font-medium">Eliminar</th>
                 </tr>
               </thead>
 
@@ -99,6 +99,7 @@ export default function AmbulancePage() {
                     <td className="py-3 px-4">{healthCenter.healthcenterName}</td>
                     <td className="py-3 px-4">
                       <button
+                        title='Eliminar'
                         onClick={() => handleDelete(healthCenter.healthcenterId)}
                         className="p-1 hover:bg-red-50 rounded-full text-red-500 transition-colors"
                       >

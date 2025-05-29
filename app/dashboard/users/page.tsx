@@ -127,10 +127,10 @@ export default function UsersPage() {
                   <th className="text-left py-3 px-4 font-medium">
                     Nombre completo
                   </th>
-                  <th className="text-left py-3 px-4 font-medium">email</th>
-                  <th className="text-left py-3 px-4 font-medium">rol</th>
-                  <th className="text-left py-3 px-4 font-medium">eliminar</th>
-                  <th className="text-left py-3 px-4 font-medium">editar</th>
+                  <th className="text-left py-3 px-4 font-medium">Email</th>
+                  <th className="text-left py-3 px-4 font-medium">Rol</th>
+                  <th className="text-left py-3 px-4 font-medium">Eliminar</th>
+                  <th className="text-left py-3 px-4 font-medium">Editar</th>
                 </tr>
               </thead>
 
@@ -146,6 +146,7 @@ export default function UsersPage() {
                     <td className="py-3 px-4">{user.role}</td>
                     <td className="py-3 px-4">
                       <button
+                        title='Eliminar'
                         onClick={() => openModal(`Esta seguro de querer eliminar el usuario ${user.firstName} ${user.lastName}?`, user)}
                         className="p-1 hover:bg-red-50 rounded-full text-red-500 transition-colors"
                       >
@@ -155,6 +156,7 @@ export default function UsersPage() {
                     </td> 
                     <td className="py-3 px-4">
                       <button
+                        title='Editar Usuario'
                         onClick={() => handleEditClick(user)}
                         className="p-1 hover:bg-red-50 rounded-full text-red-500 transition-colors"
                       >
