@@ -2,11 +2,11 @@ import {formatDate} from '@/utils/functions';
 
 describe('functions utils', () => {
 	describe('formatDate', () => {
-		it('returns "Ahorita" when date is null', () => {
+		it('returns "---" when date is null', () => {
 			expect(formatDate(null)).toBe('---');
 		});
 
-		it('returns "Ahorita" when date is undefined', () => {
+		it('returns "---" when date is undefined', () => {
 			expect(formatDate(undefined)).toBe('---');
 		});
 

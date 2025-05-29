@@ -136,11 +136,11 @@ export default function Dashboard() {
                     <td className="py-3 px-4">{emergency.ambulanceId}</td>
                     <td className="py-3 px-4">
                       <button
+                        title='Ver detalle'
                         onClick={() => router.push(`/dashboard/emergency/${emergency.emergencyId}`)}
-                        className="p-1 hover:bg-red-50 rounded-full text-red-500 transition-colors"
+                        className="p-1 rounded-full text-red-500"
                       >
                         <View className="h-4 w-4" />
-                        <span className="sr-only">Ver detalle</span>
                       </button>
                     </td>
                   </tr>
