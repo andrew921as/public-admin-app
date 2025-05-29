@@ -1,25 +1,23 @@
 'use client';
 
-import {useEffect, useState} from 'react';
-import {useRouter} from 'next/navigation';
-import {SignOut} from '@/firebase/config';
-import { Menu } from 'lucide-react';
 import MenuInformation from './MenuInformation';
 
 export default function SettingsMenu() {
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
 
   // Close panel when pressing Escape key
-	useEffect(() => {
-		const handleEscape = (event: KeyboardEvent) => {
-			if (event.key === 'Escape') {
-				setIsOpen(false);
-			}
-		};
 
-		document.addEventListener('keydown', handleEscape);
-		return () => document.removeEventListener('keydown', handleEscape);
-	}, []);
+	// useEffect(() => {
+	// 	const handleEscape = (event: KeyboardEvent) => {
+	// 		if (event.key === 'Escape') {
+	// 			setIsOpen(false);
+	// 		}
+	// 	};
+
+	// 	document.addEventListener('keydown', handleEscape);
+	// 	return () => document.removeEventListener('keydown', handleEscape);
+	// }, []);
+
 	return (
 		<>
 			{/* Side Panel */}

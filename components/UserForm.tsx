@@ -1,13 +1,16 @@
 "use client";
 
 import apiClient from "@/api/api";
-import { formatDate } from "@/utils/functions";
 import { isValidEmail } from "@/utils/validations";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { AxiosError } from "axios";
+import { useAuth } from "@/context/AuthContext";
+import { Ambulance } from "@/types";
 
 export function UserForm() {
+  const [ambulances, setambulances] = useState<Ambulance[]>([]);
   const [userName, setUserName] = useState("");
   const [userLastName, setUserLastName] = useState("");
   const [userEmail, setUserEmail] = useState("");
@@ -17,7 +20,22 @@ export function UserForm() {
   const [plate, setPlate] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
+  const { user } = useAuth();
   const router = useRouter();
+
+  useEffect(() => {
+    if (!user) return;
+    const fetchAmbulances = async () => {
+      try {
+        const response = await apiClient.get("/ambulance/all");
+        setambulances(response.data.ambulances);
+        console.log(response.data.ambulances);
+      } catch (error) {
+        console.error("Error fetching ambulances:", error);
+      }
+    }
+    fetchAmbulances();
+  }, [user]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,8 +53,8 @@ export function UserForm() {
     }
 
     // Validate password
-    if (password.length < 6) {
-      toast.error("La contraseña debe tener al menos 6 caracteres.");
+    if (password.length < 8) {
+      toast.error("La contraseña debe tener al menos 8 caracteres.");
       return;
     }
 
@@ -56,15 +74,15 @@ export function UserForm() {
     let user = {};
     if (rol === "paramedic") {
       user = {
-        firstName:userName,
+        firstName: userName,
         lastName: userLastName,
         email: userEmail,
         password: password,
         ambulanceId: plate,
       };
-    }else{
+    } else {
       user = {
-        firstName:userName,
+        firstName: userName,
         lastName: userLastName,
         email: userEmail,
         password: password,
@@ -76,20 +94,20 @@ export function UserForm() {
 
     try {
       // Register patient through backend endpoint
-      const response = await apiClient.post(`/${rol}/register`, user);
+      await apiClient.post(`/${rol}/register`, user);
 
       // Successful registration
       toast.success("¡Cuenta creada con éxito!", { id: loadingToast });
 
       // Redirect to login page
       router.push("/dashboard/users");
-    } catch (error: any) {
+    } catch (error) {
       // Handle error responses from the backend
       let errorMessage = "Error al crear la cuenta.";
 
-      if (error.response) {
+      if (error instanceof AxiosError) {
         // Backend returned an error response
-        if (error.response.data && error.response.data.message) {
+        if (error.response?.data && error.response.data.message) {
           errorMessage = error.response.data.message;
         }
       } else if (error instanceof Error) {
@@ -157,6 +175,7 @@ export function UserForm() {
         </div>
         <div>
           <select
+            aria-label="Rol"
             id="role"
             name="roles"
             value={rol}
@@ -171,15 +190,23 @@ export function UserForm() {
           </select>
         </div>
         <div>
-          {rol === "ambulance" && (
-            <input
-              type="text"
-              placeholder="Matricula"
+          {rol === "paramedic" && (
+            <select
+              aria-label="Ambulancia"
+              id="ambulances"
+              name="ambulances"
               value={plate}
               onChange={(e) => setPlate(e.target.value)}
               className="w-full px-4 py-3 rounded-full border border-gray-200 shadow-lg focus:outline-none focus:ring-2 focus:ring-customRed focus:border-transparent"
               required
-            />
+            >
+              <option value="">Seleccione una ambulancia</option>
+              {ambulances.map((ambulance) => (
+                <option key={ambulance.ambulanceId} value={ambulance.ambulanceId}>
+                  {ambulance.ambulanceId}
+                </option>
+              ))}
+          </select>
           )}
         </div>
       </div>

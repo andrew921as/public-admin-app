@@ -1,6 +1,5 @@
 "use client";
 
-import EmergencyCard from "@/components/EmergencyCard";
 import { UserForm } from "@/components/UserForm";
 import { ArrowBigLeft } from "lucide-react";
 import Link from "next/link";

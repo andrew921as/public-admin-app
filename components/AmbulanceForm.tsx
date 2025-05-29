@@ -1,10 +1,9 @@
 "use client";
 
 import apiClient from "@/api/api";
-import { formatDate } from "@/utils/functions";
-import { isValidEmail } from "@/utils/validations";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { AxiosError } from "axios";
 import toast from "react-hot-toast";
 
 export function AmbulanceForm() {
@@ -17,7 +16,7 @@ export function AmbulanceForm() {
     e.preventDefault();
 
     // Form validations
-    if (!ambulanceId) {
+    if (ambulanceId=="") {
       toast.error("Por favor ingrese el Id de la Ambulancia.");
       return;
     }
@@ -27,20 +26,20 @@ export function AmbulanceForm() {
 
     try {
       // Register patient through backend endpoint
-      const response = await apiClient.post(`/ambulance/register`, {ambulanceId: ambulanceId});
+      await apiClient.post(`/ambulance/register`, {ambulanceId: ambulanceId});
 
       // Successful registration
       toast.success("Ambulancia creada con éxito!", { id: loadingToast });
 
       // Redirect to login page
       router.push("/dashboard/ambulance");
-    } catch (error: any) {
+    } catch (error) {
       // Handle error responses from the backend
       let errorMessage = "Error al crear la ambulancia.";
 
-      if (error.response) {
+      if (error instanceof AxiosError) {
         // Backend returned an error response
-        if (error.response.data && error.response.data.message) {
+        if (error.response?.data && error.response.data.message) {
           errorMessage = error.response.data.message;
         }
       } else if (error instanceof Error) {

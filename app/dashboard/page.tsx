@@ -1,10 +1,8 @@
 'use client';
 
 // Mocks
-import { emergenciesList } from '@/mocks/emergency';
 
 // Components
-import EmergencyCard from '@/components/EmergencyCard';
 import { formatDate } from '@/utils/functions';
 import { useEffect, useState } from 'react';
 import { useAuth } from '@/context/AuthContext';
@@ -32,7 +30,7 @@ export default function Dashboard() {
       try {
         setLoading(true);
         const response = await apiClient.get("/emergency/all");
-        setData(response.data.data);
+        setData(response.data.data.reverse());
         console.log(response.data.data);
         setFilteredEmergencies(response.data.data);
         toast.success("Emergencias cargadas correctamente.", { id: loadingToast });
@@ -63,7 +61,7 @@ export default function Dashboard() {
     }
   }, [searchTerm, user]);
 
-  if (data === null) {
+  if (data === null && loading) {
     return (
       <main className="min-h-screen bg-white p-4">
         {/* Main Content */}
@@ -126,7 +124,6 @@ export default function Dashboard() {
             <tbody>
               {filteredEmergencies.map((emergency) => {
                 const formattedDate = formatDate(emergency.startDate);
-                const formattedPickupDate = formatDate(emergency.pickupDate);
                 const formattedDeliveredDate = formatDate(emergency.deliveredDate);
                 return (
                   <tr
@@ -139,11 +136,11 @@ export default function Dashboard() {
                     <td className="py-3 px-4">{emergency.ambulanceId}</td>
                     <td className="py-3 px-4">
                       <button
+                        title='Ver detalle'
                         onClick={() => router.push(`/dashboard/emergency/${emergency.emergencyId}`)}
-                        className="p-1 hover:bg-red-50 rounded-full text-red-500 transition-colors"
+                        className="p-1 rounded-full text-red-500"
                       >
                         <View className="h-4 w-4" />
-                        <span className="sr-only">Ver detalle</span>
                       </button>
                     </td>
                   </tr>
@@ -155,7 +152,7 @@ export default function Dashboard() {
           {/* Empty State */}
           {data.length === 0 && (
             <div className="text-center py-8 text-gray-500">
-              No hay usuarios para mostrar
+              No hay emergencias para mostrar
             </div>
           )}
         </div>

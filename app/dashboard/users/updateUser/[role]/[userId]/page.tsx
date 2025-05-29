@@ -10,7 +10,7 @@ import { useParams, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
-export default function updateUser() {
+export default function UpdateUser() {
   const { role, userId } = useParams(); // Get emergencyId from URL
   const searchParams = useSearchParams(); // Get URL search params
   const [loading, setLoading] = useState(true);
@@ -27,7 +27,7 @@ export default function updateUser() {
           const parsed = JSON.parse(decodeURIComponent(userDataString));
           setUserData(parsed);
         } catch (error) {
-          console.error('Failed to parse emergency data:', error);
+          console.error('Failed to parse user data:', error);
           fetchUser();
         }
       } else {
@@ -36,7 +36,7 @@ export default function updateUser() {
       setLoading(false);
     };
     const fetchUser = async () => {
-      let formatedRol = role === 'clinic' ? 'healthCenter' : role;
+      const formatedRol = role === 'clinic' ? 'healthCenter' : role;
     const loadingToast = toast.loading('Cargando Usuario...');
       try {
         const response = await apiClient.get(`/${formatedRol}/${userId}`);
@@ -84,7 +84,7 @@ export default function updateUser() {
         {loading ? (
           <div className="w-6 h-6 border-2 border-customRed border-t-transparent rounded-full animate-spin" />
         ) : (
-          <EditProfileForm firstName={userData?.firstName} lastName={userData?.lastName} role={userData?.role} isActive={userData?.isActive} userId={userData?.userId} />
+          <EditProfileForm firstName={userData ? userData.firstName : ""} lastName={userData? userData.lastName:""} role={userData?userData.role:""} isActive={userData?userData.isActive:false} userId={userData?userData.userId:""} />
         )}
       </div>
     </main>

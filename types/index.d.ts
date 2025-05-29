@@ -73,3 +73,8 @@ export type UserUpdateData = {
   isActive: boolean;
   role: string;
 };
+
+export type Ambulance = {
+  ambulanceId: string;
+  status: string;
+}

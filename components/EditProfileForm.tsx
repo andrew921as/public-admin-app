@@ -1,7 +1,6 @@
 'use client';
 
 import apiClient from '@/api/api';
-import { useAuth } from '@/context/AuthContext';
 import { UserUpdateData } from '@/types';
 import React, {useState} from 'react';
 import toast from 'react-hot-toast';
@@ -13,7 +12,7 @@ const Switch = React.forwardRef<
     checked?: boolean
     onCheckedChange?: (checked: boolean) => void
   }
->(({ className, checked = false, onCheckedChange, ...props }, ref) => {
+>(({ checked = false, onCheckedChange, ...props }, ref) => {
   const handleClick = (e: React.FormEvent) => {
     e.preventDefault()
     onCheckedChange?.(!checked)
@@ -138,46 +137,6 @@ export default function EditProfileForm ({firstName, lastName, userId, role, isA
         </div>
         <Switch id="user-active-toggle" checked={userIsActive} onCheckedChange={handleChecketChange} />
       </div>
-        {/* <div>
-					<input
-						type="email"
-						placeholder="Email"
-						value={userEmail}
-						onChange={(e) => setUserEmail(e.target.value)}
-						className="w-full px-4 py-3 rounded-full border border-gray-200 shadow-lg focus:outline-none focus:ring-2 focus:ring-customRed focus:border-transparent"
-						required
-					/>
-				</div>
-				<div>
-					<input
-						type="password"
-						placeholder="Contraseña actual"
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-						className="w-full px-4 py-3 rounded-full border border-gray-200 shadow-lg focus:outline-none focus:ring-2 focus:ring-customRed focus:border-transparent"
-						required
-					/>
-				</div>
-        <div>
-					<input
-						type="password"
-						placeholder="Nueva Contraseña"
-						value={newPassword}
-						onChange={(e) => setNewPassword(e.target.value)}
-						className="w-full px-4 py-3 rounded-full border border-gray-200 shadow-lg focus:outline-none focus:ring-2 focus:ring-customRed focus:border-transparent"
-						required
-					/>
-				</div>
-        <div>
-					<input
-						type="password"
-						placeholder="Confirmar Contraseña"
-						value={confirmPassword}
-						onChange={(e) => setConfirmPassword(e.target.value)}
-						className="w-full px-4 py-3 rounded-full border border-gray-200 shadow-lg focus:outline-none focus:ring-2 focus:ring-customRed focus:border-transparent"
-						required
-					/>
-				</div> */}
 			</div>
 			<button
 				type="submit"

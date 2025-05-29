@@ -17,6 +17,8 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: 'StrokeE - Admin App',
   description: 'Emergency response system for administrators',
+  manifest: '/manifest.json',
+
 };
 
 export default function RootLayout({

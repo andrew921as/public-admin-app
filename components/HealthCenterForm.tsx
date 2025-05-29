@@ -1,10 +1,9 @@
 "use client";
 
 import apiClient from "@/api/api";
-import { formatDate } from "@/utils/functions";
-import { isValidEmail } from "@/utils/validations";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { AxiosError } from "axios";
 import toast from "react-hot-toast";
 
 export function HealthCenterForm() {
@@ -27,19 +26,19 @@ export function HealthCenterForm() {
 
     try {
       // Register patient through backend endpoint
-      const response = await apiClient.post(`/clinic/register`, {healthCenterName: healthCenterName});
+      await apiClient.post(`/clinic/register`, {healthCenterName: healthCenterName});
 
       // Successful registration
       toast.success("Centro medico creado con éxito!", { id: loadingToast });
 
       router.push("/dashboard/healthCenter");
-    } catch (error: any) {
+    } catch (error) {
       // Handle error responses from the backend
       let errorMessage = "Error al crear el centro medico.";
 
-      if (error.response) {
+      if (error instanceof AxiosError) {
         // Backend returned an error response
-        if (error.response.data && error.response.data.message) {
+        if (error.response?.data && error.response.data.message) {
           errorMessage = error.response.data.message;
         }
       } else if (error instanceof Error) {

@@ -7,25 +7,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "@/context/AuthContext";
 import apiClient from "@/api/api";
 import toast from "react-hot-toast";
-
-// Mock data
-const initialambulances = [
-{
-  ambulanceId: "1",
-  status: "available",
-},
-{ ambulanceId: "2", status: "unavailable" },
-{ ambulanceId: "3", status: "available" },
-{
-  ambulanceId: "4",
-  status: "available",
-},
-];
-
-interface Ambulance {
-  ambulanceId: string;
-  status: string;
-}
+import { Ambulance } from "@/types";
 
 export default function AmbulancePage() {
   const router = useRouter();
@@ -97,7 +79,7 @@ export default function AmbulancePage() {
                   <th className="text-left py-3 px-4 font-medium">
                     Id
                   </th>
-                  <th className="text-left py-3 px-4 font-medium">eliminar</th>
+                  <th className="text-left py-3 px-4 font-medium">Eliminar</th>
                 </tr>
               </thead>
 
@@ -111,6 +93,7 @@ export default function AmbulancePage() {
                     <td className="py-3 px-4">{ambulance.ambulanceId}</td>
                     <td className="py-3 px-4">
                       <button
+                        title='Eliminar'
                         onClick={() => handleDelete(ambulance.ambulanceId)}
                         className="p-1 hover:bg-red-50 rounded-full text-red-500 transition-colors"
                       >
